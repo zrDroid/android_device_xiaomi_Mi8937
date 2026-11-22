@@ -12,4 +12,5 @@ export DEVICE=Mi8937
 export DEVICE_COMMON=mithorium-common
 export VENDOR=xiaomi
 
-"./../../${VENDOR}/${DEVICE_COMMON}/setup-makefiles.sh" "$@"
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+"${SCRIPT_DIR}/../${DEVICE_COMMON}/setup-makefiles.sh" "$@"
