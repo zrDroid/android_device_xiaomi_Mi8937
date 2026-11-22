@@ -1,1 +1,7 @@
 allow vendor_init { fpc_data_file gx_fpd_data_file }:dir create_dir_perms;
+
+# init.target.rc runs restorecon_recursive on /mnt/vendor/persist.
+# Permit relabeling only the Goodix persistence objects, rather than
+# broad relabel permissions on the entire persist partition.
+allow vendor_init gx_fpd_data_file:dir relabelto;
+allow vendor_init gx_fpd_data_file:file relabelto;
