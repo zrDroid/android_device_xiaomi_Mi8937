@@ -5,6 +5,9 @@
 /dev/spidev7.1	u:object_r:ir_device:s0
 
 # OverlayFS
+# The land fingerprint HALs are overlaid onto /odm/lib64/hw. Label the
+# source directory and its children as HAL files, not generic vendor files.
+/(vendor|system/vendor)/lib64/overlayfs/land/hw(/.*)?	u:object_r:vendor_hal_file:s0
 /(vendor|system/vendor)/bin/overlayfs/[0-9a-z-_]+/mm-qcamera-daemon	u:object_r:mm-qcamerad_exec:s0
 
 # Partitions
