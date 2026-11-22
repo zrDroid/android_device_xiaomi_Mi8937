@@ -56,7 +56,21 @@ on property:ro.vendor.fingerprint.supported=0
     stop vendor.fps_hal.wt8937
     stop vendor.gx_fpd
 
-on property:ro.vendor.fingerprint.supported=1
+# This private land build uses FPC. Skip the Goodix probe and select FPC directly.
+on property:ro.vendor.xiaomi.device=land && property:ro.vendor.fingerprint.supported=1
+    setprop persist.sys.fp.vendor switchf
+    setprop persist.sys.fp.onstart 0
+    setprop ro.vendor.fingerprint.init 1
+
+# Preserve Goodix/FPC detection for other devices using this HAL.
+on property:ro.vendor.xiaomi.device=prada && property:ro.vendor.fingerprint.supported=1
+    setprop persist.sys.fp.vendor none
+    setprop persist.sys.fp.onstart 0
+    setprop ro.hardware.gxfingerprint ${ro.vendor.xiaomi.device}
+    setprop ro.vendor.fingerprint.init 1
+    enable vendor.gx_fpd
+
+on property:ro.vendor.xiaomi.device=santoni && property:ro.vendor.fingerprint.supported=1
     setprop persist.sys.fp.vendor none
     setprop persist.sys.fp.onstart 0
     setprop ro.hardware.gxfingerprint ${ro.vendor.xiaomi.device}
