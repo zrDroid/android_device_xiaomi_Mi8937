@@ -58,7 +58,8 @@ service vendor.goodix_script /vendor/bin/init.goodix.sh
 
 on property:ro.vendor.xiaomi.device=prada
     enable vendor.goodix_script
-on property:ro.vendor.xiaomi.series=wt8937
+# Only santoni still needs Goodix cleanup; land uses FPC directly.
+on property:ro.vendor.xiaomi.device=santoni
     enable vendor.goodix_script
 
 # HVDCP
