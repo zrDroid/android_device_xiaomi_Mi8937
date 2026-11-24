@@ -116,6 +116,10 @@ PRODUCT_PACKAGES += \
     init.xiaomi.device.rc \
     init.xiaomi.device.sh
 
+# Sensors
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/sensors/land/sensor_def_qcomdev.conf:$(TARGET_COPY_OUT_VENDOR)/etc/overlayfs/land/sensors/sensor_def_qcomdev.conf
+
 # Shims
 PRODUCT_PACKAGES += \
     libbinder_shim.vendor \
